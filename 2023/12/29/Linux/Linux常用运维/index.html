@@ -6,11 +6,15 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="磁盘管理磁盘分区通用分区使用fdisk，如果需要分配超过1T的分区，使用parted。  fidsk分区12345678910111213141516171819202122232425262728293031323334353637# 操作磁盘$ fdisk &#x2F;dev&#x2F;sdcWelcome to fdisk (util-linux 2.30.1).Changes will remain in m">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2023/12/29/Linux/Linux%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="磁盘管理磁盘分区通用分区使用fdisk，如果需要分配超过1T的分区，使用parted。  fidsk分区12345678910111213141516171819202122232425262728293031323334353637# 操作磁盘$ fdisk &#x2F;dev&#x2F;sdcWelcome to fdisk (util-linux 2.30.1).Changes will remain in m">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-29T01:53:48.391Z">
+<meta property="article:modified_time" content="2023-12-29T02:22:11.536Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -71,228 +75,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Linux/Tcpdump常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/29/Linux/Tcpdump%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time class="dt-published" datetime="2023-12-29T02:02:29.726Z" itemprop="datePublished">2023-12-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="TCP-FLAGS"><a href="#TCP-FLAGS" class="headerlink" title="TCP FLAGS"></a>TCP FLAGS</h4><p>Unskilled &#x3D;  URG  &#x3D;  (Not Displayed in Flag Field, Displayed elsewhere)<br>Attackers &#x3D;  ACK  &#x3D;  (Not Displayed in Flag Field, Displayed elsewhere)<br>Pester      &#x3D;  PSH  &#x3D;  [P] (Push Data)<br>Real          &#x3D;  RST  &#x3D;  [R] (Reset Connection)<br>Security   &#x3D;  SYN  &#x3D;  [S] (Start Connection)<br>Folks        &#x3D;  FIN   &#x3D;  [F] (Finish Connection)<br>            SYN-ACK  &#x3D;  [S.] (SynAcK Packet)<br>                                 [.] (No Flag Set)</p>
-<h4 id="USAGE"><a href="#USAGE" class="headerlink" title="USAGE"></a>USAGE</h4><h5 id="Basic-communication"><a href="#Basic-communication" class="headerlink" title="Basic communication"></a>Basic communication</h5><p>see the basics without many options</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth0 -nS</span><br></pre></td></tr></table></figure>
-
-<p>Basic communication (very verbose) ,see a good amount of traffic, with verbosity and no name help</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth0 -nnvvS</span><br></pre></td></tr></table></figure>
-
-<h5 id="A-deeper-look-at-the-traffic"><a href="#A-deeper-look-at-the-traffic" class="headerlink" title="A deeper look at the traffic"></a>A deeper look at the traffic</h5><p>adds -X for payload but doesn’t grab any more of the packet</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth0 -nnvvXS</span><br></pre></td></tr></table></figure>
-
-<h5 id="Heavy-packet-viewing"><a href="#Heavy-packet-viewing" class="headerlink" title="Heavy packet viewing"></a>Heavy packet viewing</h5><p>the final “s” increases the snaplength, grabbing the whole packet</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -nnvvXSs 1514</span><br></pre></td></tr></table></figure>
-<h5 id="host"><a href="#host" class="headerlink" title="host"></a>host</h5><p>look for traffic based on IP address (also works with hostname if you’re not using -n) </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump host 1.2.3.4</span><br></pre></td></tr></table></figure>
-<h5 id="src-dst"><a href="#src-dst" class="headerlink" title="src, dst"></a>src, dst</h5><p>find traffic from only a source or destination (eliminates one side of a host conversation) </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tcpdump src 2.3.4.5 </span><br><span class="line">tcpdump dst 3.4.5.6</span><br></pre></td></tr></table></figure>
-
-<h5 id="net"><a href="#net" class="headerlink" title="net"></a>net</h5><p>capture an entire network using CIDR notation </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump net 1.2.3.0/24</span><br></pre></td></tr></table></figure>
-<h5 id="proto"><a href="#proto" class="headerlink" title="proto"></a>proto</h5><p>works for tcp, udp, and icmp. Note that you don’t have to type proto </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump icmp</span><br></pre></td></tr></table></figure>
-<h5 id="port"><a href="#port" class="headerlink" title="port"></a>port</h5><p>see only traffic to or from a certain port </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump port 3389</span><br></pre></td></tr></table></figure>
-
-<h5 id="src-dst-port"><a href="#src-dst-port" class="headerlink" title="src, dst port"></a>src, dst port</h5><p>filter based on the source or destination port </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump src port 1025 <span class="comment"># tcpdump dst port 389</span></span><br></pre></td></tr></table></figure>
-<h5 id="src-dst-port-protocol"><a href="#src-dst-port-protocol" class="headerlink" title="src&#x2F;dst, port, protocol"></a>src&#x2F;dst, port, protocol</h5><p>combine all three </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tcpdump src port 1025 and tcp </span><br><span class="line">tcpdump udp and src port 53</span><br></pre></td></tr></table></figure>
-
-<h5 id="Port-Ranges"><a href="#Port-Ranges" class="headerlink" title="Port Ranges"></a>Port Ranges</h5><p>You also have the option to filter by a range of ports instead of declaring them individually, and to only see packets that are above or below a certain size.</p>
-<p>see traffic to any port in a range </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump portrange 21-23</span><br></pre></td></tr></table></figure>
-<h5 id="Packet-Size-Filter"><a href="#Packet-Size-Filter" class="headerlink" title="Packet Size Filter"></a>Packet Size Filter</h5><p>only see packets below or above a certain size (in bytes) </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tcpdump less 32 </span><br><span class="line">tcpdump greater 128</span><br></pre></td></tr></table></figure>
-<p>[ You can use the symbols for less than, greater than, and less than or equal &#x2F; greater than or equal signs as well. ]<br>filtering for size using symbols </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tcpdump &gt; 32 </span><br><span class="line">tcpdump &lt;= 128</span><br></pre></td></tr></table></figure>
-
-<p>[ Note: Only the PSH, RST, SYN, and FIN flags are displayed in tcpdump‘s flag field output. URGs and ACKs are displayed, but they are shown elsewhere in the output rather than in the flags field ]</p>
-<p>Keep in mind the reasons these filters work. The filters above find these various packets because tcp[13] looks at offset 13 in the TCP header, the number represents the location within the byte, and the !&#x3D;0 means that the flag in question is set to 1, i.e. it’s on.</p>
-<h5 id="Show-all-URG-packets"><a href="#Show-all-URG-packets" class="headerlink" title="Show all URG packets:"></a>Show all URG packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 32 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-all-ACK-packets"><a href="#Show-all-ACK-packets" class="headerlink" title="Show all ACK packets:"></a>Show all ACK packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 16 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-all-PSH-packets"><a href="#Show-all-PSH-packets" class="headerlink" title="Show all PSH packets:"></a>Show all PSH packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 8 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-all-RST-packets"><a href="#Show-all-RST-packets" class="headerlink" title="Show all RST packets:"></a>Show all RST packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 4 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-all-SYN-packets"><a href="#Show-all-SYN-packets" class="headerlink" title="Show all SYN packets:"></a>Show all SYN packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 2 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-all-FIN-packets"><a href="#Show-all-FIN-packets" class="headerlink" title="Show all FIN packets:"></a>Show all FIN packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 1 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-all-SYN-ACK-packets"><a href="#Show-all-SYN-ACK-packets" class="headerlink" title="Show all SYN-ACK packets:"></a>Show all SYN-ACK packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] = 18&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-icmp-echo-request-and-reply"><a href="#Show-icmp-echo-request-and-reply" class="headerlink" title="Show icmp echo request and reply"></a>Show icmp echo request and reply</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -n icmp and <span class="string">&#x27;icmp[0] != 8 and icmp[0] != 0&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-all-IP-packets-with-a-non-zero-TOS-field"><a href="#Show-all-IP-packets-with-a-non-zero-TOS-field" class="headerlink" title="Show all IP packets with a non-zero TOS field"></a>Show all IP packets with a non-zero TOS field</h5><p>one byte TOS field is at offset 1 in IP header</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -v -n ip and ip[1]!=0</span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-all-IP-packets-with-TTL-less-than-some-value"><a href="#Show-all-IP-packets-with-TTL-less-than-some-value" class="headerlink" title="Show all IP packets with TTL less than some value"></a>Show all IP packets with TTL less than some value</h5><p>on byte TTL field is at offset 8 in IP header</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -v ip and <span class="string">&#x27;ip[8]&lt;2&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-TCP-SYN-packets"><a href="#Show-TCP-SYN-packets" class="headerlink" title="Show TCP SYN packets"></a>Show TCP SYN packets</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -n tcp and port 80 and <span class="string">&#x27;tcp[tcpflags] &amp; tcp-syn == tcp-syn&#x27;</span></span><br><span class="line">tcpdump tcp and port 80 and <span class="string">&#x27;tcp[tcpflags] == tcp-syn&#x27;</span></span><br><span class="line">tcpdump -i &lt;interface&gt; <span class="string">&quot;tcp[tcpflags] &amp; (tcp-syn) != 0&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-TCP-ACK-packets"><a href="#Show-TCP-ACK-packets" class="headerlink" title="Show TCP ACK packets"></a>Show TCP ACK packets</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i &lt;interface&gt; <span class="string">&quot;tcp[tcpflags] &amp; (tcp-ack) != 0&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-TCP-SYN-ACK-packets"><a href="#Show-TCP-SYN-ACK-packets" class="headerlink" title="Show TCP SYN&#x2F;ACK packets"></a>Show TCP SYN&#x2F;ACK packets</h5><p>(typically, responses from servers):</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -n tcp and <span class="string">&#x27;tcp[tcpflags] &amp; (tcp-syn|tcp-ack) == (tcp-syn|tcp-ack)&#x27;</span></span><br><span class="line">tcpdump -n tcp and <span class="string">&#x27;tcp[tcpflags] &amp; tcp-syn == tcp-syn&#x27;</span> and <span class="string">&#x27;tcp[tcpflags] &amp; tcp-ack == tcp-ack&#x27;</span></span><br><span class="line">tcpdump -i &lt;interface&gt; <span class="string">&quot;tcp[tcpflags] &amp; (tcp-syn|tcp-ack) != 0&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Show-TCP-FIN-packets"><a href="#Show-TCP-FIN-packets" class="headerlink" title="Show TCP FIN packets"></a>Show TCP FIN packets</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i &lt;interface&gt; <span class="string">&quot;tcp[tcpflags] &amp; (tcp-fin) != 0&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-ARP-Packets-with-MAC-address"><a href="#Show-ARP-Packets-with-MAC-address" class="headerlink" title="Show ARP Packets with MAC address"></a>Show ARP Packets with MAC address</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -vv -e -nn ether proto 0x0806</span><br></pre></td></tr></table></figure>
-
-<h5 id="Show-packets-of-a-specified-length-IP-packet-length-16-bits-is-located-at-offset-2-in-IP-header"><a href="#Show-packets-of-a-specified-length-IP-packet-length-16-bits-is-located-at-offset-2-in-IP-header" class="headerlink" title="Show packets of a specified length (IP packet length (16 bits) is located at offset 2 in IP header):"></a>Show packets of a specified length (IP packet length (16 bits) is located at offset 2 in IP header):</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -l icmp and <span class="string">&#x27;(ip[2:2]&gt;50)&#x27;</span> -w - |tcpdump -r - -v ip and <span class="string">&#x27;(ip[2:2]&lt;60)&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>More Details:<br><a target="_blank" rel="noopener" href="http://danielmiessler.com/study/tcpdump/">http://danielmiessler.com/study/tcpdump/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/29/Linux/Tcpdump%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="clqq0vv300003u8qa9eyhbmng" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Windows/wsl异常处理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/29/Windows/wsl%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="article-date">
-  <time class="dt-published" datetime="2023-12-29T02:01:33.856Z" itemprop="datePublished">2023-12-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="WSL2-占位程序接收到错误数据"><a href="#WSL2-占位程序接收到错误数据" class="headerlink" title="WSL2 占位程序接收到错误数据"></a>WSL2 占位程序接收到错误数据</h4><p>Error code: Wsl&#x2F;Service&#x2F;0x800706f7</p>
-<pre><code class="bash">netsh winsock reset
-</code></pre>
-<p>然后就可以正常启动 WSL2 了，不用重启电脑</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/29/Windows/wsl%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" data-id="clqq0vv320006u8qac38l6udo" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-云原生/RocketMQ常识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/29/%E4%BA%91%E5%8E%9F%E7%94%9F/RocketMQ%E5%B8%B8%E8%AF%86/" class="article-date">
-  <time class="dt-published" datetime="2023-12-29T02:00:29.759Z" itemprop="datePublished">2023-12-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="系统配置建议"><a href="#系统配置建议" class="headerlink" title="系统配置建议"></a>系统配置建议</h4><ol>
-<li>中间件系统肯定要开启大量的线程（跟vm.max_map_count有关）</li>
-<li>而且要进行大量的网络通信和磁盘IO（跟ulimit有关）</li>
-<li>然后大量的使用内存（跟vm.swappiness和vm.overcommit_memory有关）</li>
-</ol>
-<h4 id="JVM参数"><a href="#JVM参数" class="headerlink" title="JVM参数"></a>JVM参数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">就是默认的堆大小是8g内存，新生代是4g内存.</span><br><span class="line">-Xms8g -Xmx8g -Xmn4g</span><br><span class="line"></span><br><span class="line">选用了G1垃圾回收器来做分代回收，对新生代和老年代都是用G1来回收</span><br><span class="line">-XX:+UseG1GC -XX:G1HeapRegionSize=16m</span><br><span class="line"></span><br><span class="line">在G1管理的老年代里预留25%的空闲内存. 默认值是10%</span><br><span class="line">-XX:G1ReservePercent=25</span><br><span class="line"></span><br><span class="line">堆内存的使用率达到30%之后就会自动启动G1的并发垃圾回收。默认值是45%，这里调低了一些，也就是提高了GC的频率，</span><br><span class="line">但是避免了垃圾对象过多，一次垃圾回收耗时过长的问题</span><br><span class="line">-XX:InitiatingHeapOccupancyPercent=30</span><br><span class="line"></span><br><span class="line">JVM会抛弃一些异常堆栈信息</span><br><span class="line">-XX:-OmitStackTraceInFastThrow</span><br><span class="line"></span><br><span class="line">是强制让JVM启动的时候直接分配我们指定的内存，不要等到使用内存的时候再分配</span><br><span class="line">-XX:+AlwaysPreTouch</span><br><span class="line"></span><br><span class="line">RocketMQ里大量用了NIO中的direct buffer，这里限定了direct buffer最多申请多少</span><br><span class="line">-XX:MaxDirectMemorySize=15g</span><br><span class="line"></span><br><span class="line">是禁用大内存页和偏向锁</span><br><span class="line">XX:-UseLargePages -XX:-UseBiasedLocking：</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="压力测试过程"><a href="#压力测试过程" class="headerlink" title="压力测试过程"></a>压力测试过程</h4><ol>
-<li><p>压测目的<br>应该在TPS和机器的cpu负载、内存使用率、jvm gc频率、磁盘io负载、网络流量负载之间取得一个平衡，尽量让TPS尽可能的提高，同时让机器的各项资源负载不要太高。</p>
-</li>
-<li><p>压测过程：<br>采用几台机器开启大量线程并发读写消息。然后观察TPS、cpu load (top)、内存使用率(free), jvm gc频率（jstat), 磁盘io负载（top-wa字段）、网卡流量负载（使用sar命令），不断增加机器和线程，让TPS不断提升上去，同时观察各项资源负载是否过高。</p>
-</li>
-</ol>
-<h4 id="RocketMQ发送消息"><a href="#RocketMQ发送消息" class="headerlink" title="RocketMQ发送消息"></a>RocketMQ发送消息</h4><ol>
-<li>同步发送消息</li>
-<li>异步发送消息</li>
-<li>单向发送消息</li>
-</ol>
-<h4 id="RocketMQ消费模式"><a href="#RocketMQ消费模式" class="headerlink" title="RocketMQ消费模式"></a>RocketMQ消费模式</h4><ol>
-<li>PUSH消费模式</li>
-<li>PULL消费模式</li>
-</ol>
-<h4 id="Topic、MessageQueue、Broker"><a href="#Topic、MessageQueue、Broker" class="headerlink" title="Topic、MessageQueue、Broker"></a>Topic、MessageQueue、Broker</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$HOME</span>/store/consumequeue/&#123;topic&#125;/&#123;queueId&#125;/&#123;fileName&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/29/%E4%BA%91%E5%8E%9F%E7%94%9F/RocketMQ%E5%B8%B8%E8%AF%86/" data-id="clqq0vv330007u8qa0mca6hbb" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Linux/Linux检查U盘是否挂载" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/29/Linux/Linux%E6%A3%80%E6%9F%A5U%E7%9B%98%E6%98%AF%E5%90%A6%E6%8C%82%E8%BD%BD/" class="article-date">
-  <time class="dt-published" datetime="2023-12-29T01:59:01.470Z" itemprop="datePublished">2023-12-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>原文参见: <a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/497351/detect-if-usb-disk-is-mounted-in-c-application-in-linux">detect-if-usb-disk-is-mounted-in-c-application-in-linux</a></p>
-<p>If you need to check the full list of mount points, use getmntent(3) or its thread-safe GNU extension getmntent_r(3).</p>
-<p>If you just want to quickly check whether a given directory has a filesystem mounted on it or not, then use one of the functions in the stat(2) family. For example, if you want to check if &#x2F;mnt has a filesystem mounted or not, you could do something like this。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">mountpoint</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">parent</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Get the stat structure of the directory...*/</span></span><br><span class="line"><span class="keyword">if</span> <span class="title function_">stat</span><span class="params">(<span class="string">&quot;/mnt&quot;</span>, &amp;mountpoint)</span> == <span class="number">-1</span>) &#123;</span><br><span class="line">    perror(<span class="string">&quot;failed to stat mountpoint:&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* ... and its parent. */</span></span><br><span class="line"><span class="keyword">if</span> <span class="title function_">stat</span><span class="params">(<span class="string">&quot;/mnt/..&quot;</span>, &amp;parent)</span> == <span class="number">-1</span>) &#123;</span><br><span class="line">    perror(<span class="string">&quot;failed to stat parent:&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Compare the st_dev fields in the results: if they are</span></span><br><span class="line"><span class="comment">   equal, then both the directory and its parent belong </span></span><br><span class="line"><span class="comment">   to the same filesystem, and so the directory is not </span></span><br><span class="line"><span class="comment">   currently a mount point.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">if</span> (mountpoint.st_dev == parent.st_dev) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;No, there is nothing mounted in that directory.\n&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Yes, there is currently a filesystem mounted.\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/29/Linux/Linux%E6%A3%80%E6%9F%A5U%E7%9B%98%E6%98%AF%E5%90%A6%E6%8C%82%E8%BD%BD/" data-id="clqq0vv2y0001u8qaclmz45ck" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Linux/Linux常用运维" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Linux/Linux常用运维" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/12/29/Linux/Linux%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4/" class="article-date">
   <time class="dt-published" datetime="2023-12-29T01:53:48.391Z" itemprop="datePublished">2023-12-29</time>
@@ -458,136 +241,28 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Linux/systemd监控和启动应用程序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/29/Linux/systemd%E7%9B%91%E6%8E%A7%E5%92%8C%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" class="article-date">
-  <time class="dt-published" datetime="2023-12-29T01:51:56.983Z" itemprop="datePublished">2023-12-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="创建测试程序"><a href="#创建测试程序" class="headerlink" title="创建测试程序"></a>创建测试程序</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># file systemd_test.sh</span></span><br><span class="line"><span class="keyword">while</span> :; <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> `<span class="built_in">date</span>` &gt;&gt; /tmp/systemd_test.log</span><br><span class="line">    <span class="built_in">sleep</span> 1</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+    <a href="/2023/12/29/Linux/Linux%E6%A3%80%E6%9F%A5U%E7%9B%98%E6%98%AF%E5%90%A6%E6%8C%82%E8%BD%BD/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/12/29/Linux/systemd%E7%9B%91%E6%8E%A7%E5%92%8C%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
 
-<h4 id="设置全局可访问"><a href="#设置全局可访问" class="headerlink" title="设置全局可访问"></a>设置全局可访问</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">chmod</span> +x systemd_test.sh</span><br><span class="line">$ <span class="built_in">ln</span> -sf systemd_test.sh /usr/sbin/sysd-test</span><br></pre></td></tr></table></figure>
-
-<h4 id="创建-systemd-配置文件"><a href="#创建-systemd-配置文件" class="headerlink" title="创建 systemd 配置文件"></a>创建 systemd 配置文件</h4><p>sysd-test.service</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=sysd server daemon</span><br><span class="line">Documentation=no</span><br><span class="line">After=no</span><br><span class="line">Wants=no</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=no</span><br><span class="line">ExecStart=/usr/sbin/sysd-test</span><br><span class="line">ExecReload=/bin/kill -HUP $MAINPID</span><br><span class="line">KillMode=process</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartSec=1s</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target graphic.target      #相当于runlevel：2345</span><br></pre></td></tr></table></figure>
-
-<h4 id="启用"><a href="#启用" class="headerlink" title="启用"></a>启用</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl <span class="built_in">enable</span> sysd-test.service</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="查看程序日志"><a href="#查看程序日志" class="headerlink" title="查看程序日志"></a>查看程序日志</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">journalctl -f</span><br><span class="line"></span><br><span class="line">journalctl -u frpc.service</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/29/Linux/systemd%E7%9B%91%E6%8E%A7%E5%92%8C%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/" data-id="clqq0vv310004u8qafc82g3jj" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
-    <article id="post-Linux/Python3离线升级" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/29/Linux/Python3%E7%A6%BB%E7%BA%BF%E5%8D%87%E7%BA%A7/" class="article-date">
-  <time class="dt-published" datetime="2023-12-29T01:48:25.525Z" itemprop="datePublished">2023-12-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>安装依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc libffi-devel zlib* openssl-devel libffi-devel zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下载安装包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编译安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar -xvJf Python-3.10.6.tar.xz</span><br><span class="line"><span class="built_in">cd</span> Python-3.10.6</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.编译安装</span></span><br><span class="line">./configure prefix=/usr/local/python3 --with-openssl=/usr/</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>环境替换</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ln</span> -s /usr/local/python3/bin/python3 /usr/bin/python3</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/python3/bin/pip3 /usr/bin/pip3</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>替换默认python</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ln</span> -s /usr/bin/python3 /usr/bin/python</span><br><span class="line"></span><br><span class="line"><span class="comment">## 替换后 yum不可用</span></span><br><span class="line">vim /usr/bin/yum  </span><br><span class="line">vim /usr/libexec/urlgrabber-ext-down</span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/python -&gt; #!/usr/bin/python2</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="【选做】问题openssl兼容"><a href="#【选做】问题openssl兼容" class="headerlink" title="【选做】问题openssl兼容"></a>【选做】问题openssl兼容</h4><ol>
-<li><p>升级openssl</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.openssl.org/source/openssl-1.1.1a.tar.gz</span><br><span class="line">tar -zxvf openssl-1.1.1a.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openssl-1.1.1a</span><br><span class="line"></span><br><span class="line">./config --prefix=/usr/local/openssl no-zlib <span class="comment">#不需要zlib</span></span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>备份替换openssl</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 备份</span></span><br><span class="line"><span class="built_in">mv</span> /usr/bin/openssl /usr/bin/openssl.bak</span><br><span class="line"><span class="built_in">mv</span> /usr/include/openssl/ /usr/include/openssl.bak</span><br><span class="line"></span><br><span class="line"><span class="comment">#替换</span></span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/openssl/include/openssl /usr/include/openssl</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/openssl/lib/libssl.so.1.1 /usr/local/lib64/libssl.so</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/openssl/bin/openssl /usr/bin/openssl</span><br><span class="line"></span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/openssl/lib/libssl.so.1.1 /usr/lib64/libssl.so.1.1</span><br><span class="line"><span class="built_in">ln</span> -s /usr/local/openssl/lib/libcrypto.so.1.1 /usr/lib64/libcrypto.so.1.1</span><br><span class="line"></span><br><span class="line"><span class="comment">## 动态库搜索路径</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/usr/local/openssl/lib&quot;</span> &gt;&gt; /etc/ld.so.conf</span><br><span class="line">ldconfig -v</span><br><span class="line"></span><br><span class="line"><span class="comment">## 查看版本 </span></span><br><span class="line">openssl version</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重新安装python</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local/python3 --with-openssl=/usr/local/openssl</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/29/Linux/Python3%E7%A6%BB%E7%BA%BF%E5%8D%87%E7%BA%A7/" data-id="clqq0vv300002u8qacum59xdw" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-云原生/Docker常见问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/29/%E4%BA%91%E5%8E%9F%E7%94%9F/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" class="article-date">
-  <time class="dt-published" datetime="2023-12-29T01:45:32.241Z" itemprop="datePublished">2023-12-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h4 id="设置docker日志大小"><a href="#设置docker日志大小" class="headerlink" title="设置docker日志大小"></a>设置docker日志大小</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim /etc/docker/daemon.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;http://f613ce8f.m.daocloud.io&quot;</span>],</span><br><span class="line">  <span class="string">&quot;log-driver&quot;</span>:<span class="string">&quot;json-file&quot;</span>,</span><br><span class="line">  <span class="string">&quot;log-opts&quot;</span>: &#123;<span class="string">&quot;max-size&quot;</span>:<span class="string">&quot;500m&quot;</span>, <span class="string">&quot;max-file&quot;</span>:<span class="string">&quot;3&quot;</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="清理日志"><a href="#清理日志" class="headerlink" title="清理日志"></a>清理日志</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">logs=$(find /var/lib/docker/containers/ -name *-json.log)  </span><br><span class="line"><span class="keyword">for</span> <span class="built_in">log</span> <span class="keyword">in</span> <span class="variable">$logs</span>  </span><br><span class="line"><span class="keyword">do</span>  </span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;clean logs : <span class="variable">$log</span>&quot;</span>  </span><br><span class="line">  <span class="built_in">cat</span> /dev/null &gt; <span class="variable">$log</span>  </span><br><span class="line"><span class="keyword">done</span>  </span><br></pre></td></tr></table></figure>
-
-<h4 id="清理镜像"><a href="#清理镜像" class="headerlink" title="清理镜像"></a>清理镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi $(docker images -q -f dangling=<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/29/%E4%BA%91%E5%8E%9F%E7%94%9F/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" data-id="clqq0vv310005u8qa3e134al8" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>

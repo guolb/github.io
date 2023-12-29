@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="设置docker日志大小123456# vim &#x2F;etc&#x2F;docker&#x2F;daemon.json&amp;#123;  &quot;registry-mirrors&quot;: [&quot;http:&#x2F;&#x2F;f613ce8f.m.daocloud.io&quot;],  &quot;log-driver&quot;:&quot;json-file&quot;,  &quot;log-opts&quot;:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/12/29/%E4%BA%91%E5%8E%9F%E7%94%9F/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="设置docker日志大小123456# vim &#x2F;etc&#x2F;docker&#x2F;daemon.json&amp;#123;  &quot;registry-mirrors&quot;: [&quot;http:&#x2F;&#x2F;f613ce8f.m.daocloud.io&quot;],  &quot;log-driver&quot;:&quot;json-file&quot;,  &quot;log-opts&quot;:">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-29T01:45:32.241Z">
+<meta property="article:modified_time" content="2023-12-29T01:47:43.557Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-云原生/Docker常见问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/12/29/%E4%BA%91%E5%8E%9F%E7%94%9F/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2023-12-29T01:45:32.241Z" itemprop="datePublished">2023-12-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="设置docker日志大小"><a href="#设置docker日志大小" class="headerlink" title="设置docker日志大小"></a>设置docker日志大小</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim /etc/docker/daemon.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;http://f613ce8f.m.daocloud.io&quot;</span>],</span><br><span class="line">  <span class="string">&quot;log-driver&quot;</span>:<span class="string">&quot;json-file&quot;</span>,</span><br><span class="line">  <span class="string">&quot;log-opts&quot;</span>: &#123;<span class="string">&quot;max-size&quot;</span>:<span class="string">&quot;500m&quot;</span>, <span class="string">&quot;max-file&quot;</span>:<span class="string">&quot;3&quot;</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="清理日志"><a href="#清理日志" class="headerlink" title="清理日志"></a>清理日志</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">logs=$(find /var/lib/docker/containers/ -name *-json.log)  </span><br><span class="line"><span class="keyword">for</span> <span class="built_in">log</span> <span class="keyword">in</span> <span class="variable">$logs</span>  </span><br><span class="line"><span class="keyword">do</span>  </span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;clean logs : <span class="variable">$log</span>&quot;</span>  </span><br><span class="line">  <span class="built_in">cat</span> /dev/null &gt; <span class="variable">$log</span>  </span><br><span class="line"><span class="keyword">done</span>  </span><br></pre></td></tr></table></figure>
+
+<h4 id="清理镜像"><a href="#清理镜像" class="headerlink" title="清理镜像"></a>清理镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi $(docker images -q -f dangling=<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/29/%E4%BA%91%E5%8E%9F%E7%94%9F/Docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" data-id="clqq0vv310005u8qa3e134al8" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/12/29/Linux/Python3%E7%A6%BB%E7%BA%BF%E5%8D%87%E7%BA%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/12/29/Linux/Tcpdump%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/29/Windows/wsl%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/29/%E4%BA%91%E5%8E%9F%E7%94%9F/RocketMQ%E5%B8%B8%E8%AF%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/29/Linux/Linux%E6%A3%80%E6%9F%A5U%E7%9B%98%E6%98%AF%E5%90%A6%E6%8C%82%E8%BD%BD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/29/Linux/Linux%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

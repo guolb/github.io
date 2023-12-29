@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="TCP FLAGSUnskilled &#x3D;  URG  &#x3D;  (Not Displayed in Flag Field, Displayed elsewhere)Attackers &#x3D;  ACK  &#x3D;  (Not Displayed in Flag Field, Displayed elsewhere)Pester      &#x3D;  PSH  &amp;#x3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/12/29/Linux/Tcpdump%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="TCP FLAGSUnskilled &#x3D;  URG  &#x3D;  (Not Displayed in Flag Field, Displayed elsewhere)Attackers &#x3D;  ACK  &#x3D;  (Not Displayed in Flag Field, Displayed elsewhere)Pester      &#x3D;  PSH  &amp;#x3">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-29T02:02:29.726Z">
+<meta property="article:modified_time" content="2023-12-29T02:20:04.906Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Linux/Tcpdump常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/12/29/Linux/Tcpdump%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2023-12-29T02:02:29.726Z" itemprop="datePublished">2023-12-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="TCP-FLAGS"><a href="#TCP-FLAGS" class="headerlink" title="TCP FLAGS"></a>TCP FLAGS</h4><p>Unskilled &#x3D;  URG  &#x3D;  (Not Displayed in Flag Field, Displayed elsewhere)<br>Attackers &#x3D;  ACK  &#x3D;  (Not Displayed in Flag Field, Displayed elsewhere)<br>Pester      &#x3D;  PSH  &#x3D;  [P] (Push Data)<br>Real          &#x3D;  RST  &#x3D;  [R] (Reset Connection)<br>Security   &#x3D;  SYN  &#x3D;  [S] (Start Connection)<br>Folks        &#x3D;  FIN   &#x3D;  [F] (Finish Connection)<br>            SYN-ACK  &#x3D;  [S.] (SynAcK Packet)<br>                                 [.] (No Flag Set)</p>
+<h4 id="USAGE"><a href="#USAGE" class="headerlink" title="USAGE"></a>USAGE</h4><h5 id="Basic-communication"><a href="#Basic-communication" class="headerlink" title="Basic communication"></a>Basic communication</h5><p>see the basics without many options</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth0 -nS</span><br></pre></td></tr></table></figure>
+
+<p>Basic communication (very verbose) ,see a good amount of traffic, with verbosity and no name help</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth0 -nnvvS</span><br></pre></td></tr></table></figure>
+
+<h5 id="A-deeper-look-at-the-traffic"><a href="#A-deeper-look-at-the-traffic" class="headerlink" title="A deeper look at the traffic"></a>A deeper look at the traffic</h5><p>adds -X for payload but doesn’t grab any more of the packet</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth0 -nnvvXS</span><br></pre></td></tr></table></figure>
+
+<h5 id="Heavy-packet-viewing"><a href="#Heavy-packet-viewing" class="headerlink" title="Heavy packet viewing"></a>Heavy packet viewing</h5><p>the final “s” increases the snaplength, grabbing the whole packet</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -nnvvXSs 1514</span><br></pre></td></tr></table></figure>
+<h5 id="host"><a href="#host" class="headerlink" title="host"></a>host</h5><p>look for traffic based on IP address (also works with hostname if you’re not using -n) </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump host 1.2.3.4</span><br></pre></td></tr></table></figure>
+<h5 id="src-dst"><a href="#src-dst" class="headerlink" title="src, dst"></a>src, dst</h5><p>find traffic from only a source or destination (eliminates one side of a host conversation) </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tcpdump src 2.3.4.5 </span><br><span class="line">tcpdump dst 3.4.5.6</span><br></pre></td></tr></table></figure>
+
+<h5 id="net"><a href="#net" class="headerlink" title="net"></a>net</h5><p>capture an entire network using CIDR notation </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump net 1.2.3.0/24</span><br></pre></td></tr></table></figure>
+<h5 id="proto"><a href="#proto" class="headerlink" title="proto"></a>proto</h5><p>works for tcp, udp, and icmp. Note that you don’t have to type proto </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump icmp</span><br></pre></td></tr></table></figure>
+<h5 id="port"><a href="#port" class="headerlink" title="port"></a>port</h5><p>see only traffic to or from a certain port </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump port 3389</span><br></pre></td></tr></table></figure>
+
+<h5 id="src-dst-port"><a href="#src-dst-port" class="headerlink" title="src, dst port"></a>src, dst port</h5><p>filter based on the source or destination port </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump src port 1025 <span class="comment"># tcpdump dst port 389</span></span><br></pre></td></tr></table></figure>
+<h5 id="src-dst-port-protocol"><a href="#src-dst-port-protocol" class="headerlink" title="src&#x2F;dst, port, protocol"></a>src&#x2F;dst, port, protocol</h5><p>combine all three </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tcpdump src port 1025 and tcp </span><br><span class="line">tcpdump udp and src port 53</span><br></pre></td></tr></table></figure>
+
+<h5 id="Port-Ranges"><a href="#Port-Ranges" class="headerlink" title="Port Ranges"></a>Port Ranges</h5><p>You also have the option to filter by a range of ports instead of declaring them individually, and to only see packets that are above or below a certain size.</p>
+<p>see traffic to any port in a range </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump portrange 21-23</span><br></pre></td></tr></table></figure>
+<h5 id="Packet-Size-Filter"><a href="#Packet-Size-Filter" class="headerlink" title="Packet Size Filter"></a>Packet Size Filter</h5><p>only see packets below or above a certain size (in bytes) </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tcpdump less 32 </span><br><span class="line">tcpdump greater 128</span><br></pre></td></tr></table></figure>
+<p>[ You can use the symbols for less than, greater than, and less than or equal &#x2F; greater than or equal signs as well. ]<br>filtering for size using symbols </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tcpdump &gt; 32 </span><br><span class="line">tcpdump &lt;= 128</span><br></pre></td></tr></table></figure>
+
+<p>[ Note: Only the PSH, RST, SYN, and FIN flags are displayed in tcpdump‘s flag field output. URGs and ACKs are displayed, but they are shown elsewhere in the output rather than in the flags field ]</p>
+<p>Keep in mind the reasons these filters work. The filters above find these various packets because tcp[13] looks at offset 13 in the TCP header, the number represents the location within the byte, and the !&#x3D;0 means that the flag in question is set to 1, i.e. it’s on.</p>
+<h5 id="Show-all-URG-packets"><a href="#Show-all-URG-packets" class="headerlink" title="Show all URG packets:"></a>Show all URG packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 32 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-all-ACK-packets"><a href="#Show-all-ACK-packets" class="headerlink" title="Show all ACK packets:"></a>Show all ACK packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 16 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-all-PSH-packets"><a href="#Show-all-PSH-packets" class="headerlink" title="Show all PSH packets:"></a>Show all PSH packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 8 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-all-RST-packets"><a href="#Show-all-RST-packets" class="headerlink" title="Show all RST packets:"></a>Show all RST packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 4 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-all-SYN-packets"><a href="#Show-all-SYN-packets" class="headerlink" title="Show all SYN packets:"></a>Show all SYN packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 2 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-all-FIN-packets"><a href="#Show-all-FIN-packets" class="headerlink" title="Show all FIN packets:"></a>Show all FIN packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] &amp; 1 != 0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-all-SYN-ACK-packets"><a href="#Show-all-SYN-ACK-packets" class="headerlink" title="Show all SYN-ACK packets:"></a>Show all SYN-ACK packets:</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump <span class="string">&#x27;tcp[13] = 18&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-icmp-echo-request-and-reply"><a href="#Show-icmp-echo-request-and-reply" class="headerlink" title="Show icmp echo request and reply"></a>Show icmp echo request and reply</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -n icmp and <span class="string">&#x27;icmp[0] != 8 and icmp[0] != 0&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-all-IP-packets-with-a-non-zero-TOS-field"><a href="#Show-all-IP-packets-with-a-non-zero-TOS-field" class="headerlink" title="Show all IP packets with a non-zero TOS field"></a>Show all IP packets with a non-zero TOS field</h5><p>one byte TOS field is at offset 1 in IP header</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -v -n ip and ip[1]!=0</span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-all-IP-packets-with-TTL-less-than-some-value"><a href="#Show-all-IP-packets-with-TTL-less-than-some-value" class="headerlink" title="Show all IP packets with TTL less than some value"></a>Show all IP packets with TTL less than some value</h5><p>on byte TTL field is at offset 8 in IP header</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -v ip and <span class="string">&#x27;ip[8]&lt;2&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-TCP-SYN-packets"><a href="#Show-TCP-SYN-packets" class="headerlink" title="Show TCP SYN packets"></a>Show TCP SYN packets</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -n tcp and port 80 and <span class="string">&#x27;tcp[tcpflags] &amp; tcp-syn == tcp-syn&#x27;</span></span><br><span class="line">tcpdump tcp and port 80 and <span class="string">&#x27;tcp[tcpflags] == tcp-syn&#x27;</span></span><br><span class="line">tcpdump -i &lt;interface&gt; <span class="string">&quot;tcp[tcpflags] &amp; (tcp-syn) != 0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-TCP-ACK-packets"><a href="#Show-TCP-ACK-packets" class="headerlink" title="Show TCP ACK packets"></a>Show TCP ACK packets</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i &lt;interface&gt; <span class="string">&quot;tcp[tcpflags] &amp; (tcp-ack) != 0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-TCP-SYN-ACK-packets"><a href="#Show-TCP-SYN-ACK-packets" class="headerlink" title="Show TCP SYN&#x2F;ACK packets"></a>Show TCP SYN&#x2F;ACK packets</h5><p>(typically, responses from servers):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -n tcp and <span class="string">&#x27;tcp[tcpflags] &amp; (tcp-syn|tcp-ack) == (tcp-syn|tcp-ack)&#x27;</span></span><br><span class="line">tcpdump -n tcp and <span class="string">&#x27;tcp[tcpflags] &amp; tcp-syn == tcp-syn&#x27;</span> and <span class="string">&#x27;tcp[tcpflags] &amp; tcp-ack == tcp-ack&#x27;</span></span><br><span class="line">tcpdump -i &lt;interface&gt; <span class="string">&quot;tcp[tcpflags] &amp; (tcp-syn|tcp-ack) != 0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Show-TCP-FIN-packets"><a href="#Show-TCP-FIN-packets" class="headerlink" title="Show TCP FIN packets"></a>Show TCP FIN packets</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i &lt;interface&gt; <span class="string">&quot;tcp[tcpflags] &amp; (tcp-fin) != 0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-ARP-Packets-with-MAC-address"><a href="#Show-ARP-Packets-with-MAC-address" class="headerlink" title="Show ARP Packets with MAC address"></a>Show ARP Packets with MAC address</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -vv -e -nn ether proto 0x0806</span><br></pre></td></tr></table></figure>
+
+<h5 id="Show-packets-of-a-specified-length-IP-packet-length-16-bits-is-located-at-offset-2-in-IP-header"><a href="#Show-packets-of-a-specified-length-IP-packet-length-16-bits-is-located-at-offset-2-in-IP-header" class="headerlink" title="Show packets of a specified length (IP packet length (16 bits) is located at offset 2 in IP header):"></a>Show packets of a specified length (IP packet length (16 bits) is located at offset 2 in IP header):</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -l icmp and <span class="string">&#x27;(ip[2:2]&gt;50)&#x27;</span> -w - |tcpdump -r - -v ip and <span class="string">&#x27;(ip[2:2]&lt;60)&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>More Details:<br><a target="_blank" rel="noopener" href="http://danielmiessler.com/study/tcpdump/">http://danielmiessler.com/study/tcpdump/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/29/Linux/Tcpdump%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="clqq0vv300003u8qa9eyhbmng" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/12/29/Windows/wsl%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/12/29/Linux/Tcpdump%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/29/Windows/wsl%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/29/%E4%BA%91%E5%8E%9F%E7%94%9F/RocketMQ%E5%B8%B8%E8%AF%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/29/Linux/Linux%E6%A3%80%E6%9F%A5U%E7%9B%98%E6%98%AF%E5%90%A6%E6%8C%82%E8%BD%BD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/29/Linux/Linux%E5%B8%B8%E7%94%A8%E8%BF%90%E7%BB%B4/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
