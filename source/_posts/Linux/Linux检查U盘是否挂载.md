@@ -1,5 +1,10 @@
-原文参见: [detect-if-usb-disk-is-mounted-in-c-application-in-linux](https://unix.stackexchange.com/questions/497351/detect-if-usb-disk-is-mounted-in-c-application-in-linux)
-
+---
+title: Linux检查U盘是否挂载
+date: 2023-12-29 13:15:56
+tags:
+  - 技术笔记
+  - Linux
+---
 If you need to check the full list of mount points, use getmntent(3) or its thread-safe GNU extension getmntent_r(3).
 
 If you just want to quickly check whether a given directory has a filesystem mounted on it or not, then use one of the functions in the stat(2) family. For example, if you want to check if /mnt has a filesystem mounted or not, you could do something like this。
@@ -38,3 +43,5 @@ if (mountpoint.st_dev == parent.st_dev) {
 }
 ```
 
+
+原文参见: [detect-if-usb-disk-is-mounted-in-c-application-in-linux](https://unix.stackexchange.com/questions/497351/detect-if-usb-disk-is-mounted-in-c-application-in-linux)

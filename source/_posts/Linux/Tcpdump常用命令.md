@@ -1,5 +1,12 @@
+---
+title: tcpdump常用样例
+date: 2023-12-29 13:15:56
+tags:
+  - 技术笔记
+  - Linux
+---
 #### TCP FLAGS
-
+```
 Unskilled =  URG  =  (Not Displayed in Flag Field, Displayed elsewhere) 
 Attackers =  ACK  =  (Not Displayed in Flag Field, Displayed elsewhere)
 Pester      =  PSH  =  [P] (Push Data)
@@ -8,6 +15,7 @@ Security   =  SYN  =  [S] (Start Connection)
 Folks        =  FIN   =  [F] (Finish Connection)
             SYN-ACK  =  [S.] (SynAcK Packet)
                                  [.] (No Flag Set)
+```
 
 #### USAGE
 ##### Basic communication 

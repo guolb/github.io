@@ -1,4 +1,9 @@
-
+---
+title: Docker常见问题
+date: 2023-12-29 13:15:56
+tags:
+  - 技术笔记
+---
 #### 设置docker日志大小
 ```bash
 # vim /etc/docker/daemon.json

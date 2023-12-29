@@ -1,0 +1,161 @@
+{
+  "main": {
+    "id": "d2c602263034a0ef",
+    "type": "split",
+    "children": [
+      {
+        "id": "0d885f549848482d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a22083ae6d392b72",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Windows/wsl异常处理.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8873e2f9fff03664",
+    "type": "split",
+    "children": [
+      {
+        "id": "5baad84df7b5102d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d0a5f179d61b0164",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e84b68221ce0d71b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1f16555c63956e50",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7b481a128cc1b875",
+    "type": "split",
+    "children": [
+      {
+        "id": "9d5b8846a6d254be",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9f1a93116550959e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Windows/wsl异常处理.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "65b1afd7ad0e6a4e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Windows/wsl异常处理.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9e874b17392597f0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "4bf3f3c494343341",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Windows/wsl异常处理.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "a22083ae6d392b72",
+  "lastOpenFiles": [
+    "demo.md",
+    "Windows/wsl异常处理.md",
+    "Linux/Tcpdump常用命令.md",
+    "Linux/systemd监控和启动应用程序.md",
+    "Linux/Python3离线升级.md",
+    "Linux/Linux检查U盘是否挂载.md",
+    "Linux/Linux常用运维.md",
+    "云原生/RocketMQ常识.md",
+    "云原生/Docker常见问题.md"
+  ]
+}

@@ -1,4 +1,10 @@
-
+---
+title: Python3离线升级
+date: 2023-12-29 13:15:56
+tags:
+  - 技术笔记
+  - Linux
+---
 1. 安装依赖
 ```bash
 yum install gcc libffi-devel zlib* openssl-devel libffi-devel zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make
